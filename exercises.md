@@ -16,7 +16,7 @@ Trong `Settings`, `agent_api_key` không có giá trị mặc định nên app c
 khi khởi động nếu thiếu biến môi trường. Hãy mô tả một tình huống cụ thể mà
 việc "chết sớm" này cứu bạn, so với việc để mặc định `"changeme"`.
 
-> Nếu để mặc định là "changeme", khi đưa app lên production mà quên cài đặt biến môi trường, ứng dụng vẫn khởi động thành công. Hacker có thể dễ dàng dò ra và gọi API thoải mái bằng khóa "changeme", dẫn đến rò rỉ dữ liệu hoặc cạn kiệt tiền API mà đội ngũ dev không hề hay biết. Việc Fail-fast (chết ngay) buộc dev phải khai báo đúng key mới chạy được, ngăn chặn thảm họa bảo mật này từ trứng nước.
+> Nếu để mặc định là "changeme", khi đưa app lên production mà quên cài đặt biến môi trường, ứng dụng vẫn khởi động thành công. Người dùng có thể dễ dàng dò ra và gọi API thoải mái bằng khóa "changeme", dẫn đến rò rỉ dữ liệu hoặc cạn kiệt tiền API mà đội ngũ dev không hề hay biết. Việc Fail-fast (chết ngay) buộc dev phải khai báo đúng key mới chạy được, ngăn chặn thảm họa bảo mật này từ đầu.
 
 ---
 
@@ -97,7 +97,7 @@ nhưng cost guard phải chặn, và một tình huống ngược lại.
 > - Cost guard (chặn Cạn kiệt tài chính): Giới hạn theo tổng ngân sách ($/tháng).
 > 
 > Tình huống Rate limit cho qua, Cost guard chặn: Bạn hỏi tà tà mỗi phút 1 câu suốt tháng. Rate limit (10 câu/phút) luôn pass, nhưng đến cuối tháng tổng tiền token đã vượt $10, lúc này Cost guard sẽ chặn.
-> Tình huống Rate limit chặn, Cost guard pass: Mới đầu tháng (tiêu 0$), bạn nện 20 request vào API trong 10 giây. Cost guard thấy bạn mới xài 0.001$ nên vẫn cho pass, nhưng Rate limit sẽ chặn 10 request cuối vì đã vượt 10 req/phút.
+> Tình huống Rate limit chặn, Cost guard pass: Mới đầu tháng (tiêu 0$), bạn gửi 20 request vào API trong 10 giây. Cost guard thấy bạn mới xài 0.001$ nên vẫn cho pass, nhưng Rate limit sẽ chặn 10 request cuối vì đã vượt 10 req/phút.
 
 ---
 
